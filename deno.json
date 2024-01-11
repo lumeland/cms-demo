@@ -1,6 +1,6 @@
 {
   "imports": {
-    "cms/": "https://raw.githubusercontent.com/lumeland/cms/ad2176ac5f9f50107d632c40fad89b0e1de2fe43/",
+    "cms/": "https://raw.githubusercontent.com/lumeland/cms/6e12d675175f19d77d62cfa8ff802c926e085ec6/",
     "std/": "https://deno.land/std@0.208.0/",
     "hono/": "https://deno.land/x/hono@v3.11.11/",
     "hono/jsx/jsx-runtime": "https://deno.land/x/hono@v3.11.11/jsx/jsx-runtime.ts"
