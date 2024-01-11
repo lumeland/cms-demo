@@ -1,8 +1,17 @@
 import cms from "cms/mod.ts";
 import { Octokit } from "npm:octokit";
 import { GhDataStorage, GhFileStorage } from "cms/src/storage/github.ts";
+import { basicAuth } from "hono/middleware.ts";
 
-const app = cms();
+const app = cms({
+  middlewares: [
+    basicAuth({
+      username: Deno.env.get("USERNAME")!,
+      password: Deno.env.get("PASSWORD")!,
+    }),
+  ],
+});
+
 const octokit = new Octokit({ auth: Deno.env.get("GITHUB_TOKEN") });
 
 // Create a new storage for the data
