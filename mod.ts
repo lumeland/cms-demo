@@ -13,7 +13,7 @@ const app = cms({
 });
 
 // Register GitHub storage
-app.store(
+app.storage(
   "gh",
   new GitHubStorage({
     client: new Octokit({ auth: Deno.env.get("GITHUB_TOKEN") }),
