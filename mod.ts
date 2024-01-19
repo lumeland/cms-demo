@@ -38,6 +38,14 @@ app.collection(
         required: true,
       },
     },
+    {
+      name: "image",
+      type: "file",
+      uploads: "uploads",
+      attributes: {
+        accept: "image/*",
+      },
+    },
     "tags: list",
     "draft: checkbox",
     "show_toc: checkbox",
