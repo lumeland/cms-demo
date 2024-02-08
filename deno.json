@@ -1,13 +1,6 @@
 {
   "imports": {
-    "cms/": "https://raw.githubusercontent.com/lumeland/cms/0b11103f7b92887f60c38b565e815189a55a8752/",
-    "std/": "https://deno.land/std@0.208.0/",
-    "hono/": "https://deno.land/x/hono@v3.11.11/",
-    "hono/jsx/jsx-runtime": "https://deno.land/x/hono@v3.11.11/jsx/jsx-runtime.ts"
+    "cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@v0.1.0/"
   },
-  "lock": false,
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
-  }
+  "lock": false
 }

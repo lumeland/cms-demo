@@ -1,16 +1,8 @@
 import cms from "cms/mod.ts";
 import { Octokit } from "npm:octokit";
-import { GitHubStorage } from "cms/src/storage/github.ts";
-import { basicAuth } from "hono/middleware.ts";
+import GitHubStorage from "cms/src/storage/github.ts";
 
-const app = cms({
-  middlewares: [
-    basicAuth({
-      username: Deno.env.get("USERNAME")!,
-      password: Deno.env.get("PASSWORD")!,
-    }),
-  ],
-});
+const app = cms();
 
 // Register GitHub storage
 app.storage(
@@ -53,4 +45,7 @@ app.collection(
   ],
 );
 
-app.serve();
+Deno.serve({
+  port: 8000,
+  handler: app.init().fetch,
+});
