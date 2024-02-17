@@ -1,6 +1,6 @@
 import cms from "cms/mod.ts";
 import { Octokit } from "npm:octokit";
-import GitHubStorage from "cms/src/storage/github.ts";
+import GitHubStorage from "cms/storage/github.ts";
 
 const app = cms();
 
