@@ -2,7 +2,14 @@ import cms from "cms/mod.ts";
 import { Octokit } from "npm:octokit";
 import GitHubStorage from "cms/storage/github.ts";
 
-const app = cms();
+const app = cms({
+  auth: {
+    method: "basic",
+    users: {
+      hello: "world",
+    },
+  },
+});
 
 // Register GitHub storage
 app.storage(
