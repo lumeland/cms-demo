@@ -2,14 +2,7 @@ import cms from "cms/mod.ts";
 import { Octokit } from "npm:octokit";
 import GitHubStorage from "cms/storage/github.ts";
 
-const app = cms({
-  auth: {
-    method: "basic",
-    users: {
-      hello: "world",
-    },
-  },
-});
+const app = cms();
 
 // Register GitHub storage
 app.storage(
@@ -20,6 +13,22 @@ app.storage(
     repo: "test",
   }),
 );
+
+app.field("blocks", {
+  tag: "f-blocks",
+  jsImport: `lume_cms/components/f-blocks.js`,
+  applyChanges(data, changes, field) {
+    if (field.name in changes) {
+      const value = changes[field.name];
+
+      if (!value && !field.attributes?.required) {
+        delete data[field.name];
+      } else {
+        data[field.name] = value;
+      }
+    }
+  },
+});
 
 // Configure an upload folder
 app.upload("uploads", "gh:uploads");
@@ -48,6 +57,7 @@ app.collection(
     "tags: list",
     "draft: checkbox",
     "show_toc: checkbox",
+    "blocks: blocks",
     "content: markdown",
   ],
 );
