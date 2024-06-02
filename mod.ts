@@ -1,11 +1,12 @@
-import cms from "cms/mod.ts";
+import lumeCMS from "cms/mod.ts";
 import { Octokit } from "npm:octokit";
 import GitHubStorage from "cms/storage/github.ts";
+import blocks from "cms/fields/blocks.ts";
 
-const app = cms();
+const cms = lumeCMS();
 
 // Register GitHub storage
-app.storage(
+cms.storage(
   "gh",
   new GitHubStorage({
     client: new Octokit({ auth: Deno.env.get("GITHUB_TOKEN") }),
@@ -14,27 +15,13 @@ app.storage(
   }),
 );
 
-app.field("blocks", {
-  tag: "f-blocks",
-  jsImport: `lume_cms/components/f-blocks.js`,
-  applyChanges(data, changes, field) {
-    if (field.name in changes) {
-      const value = changes[field.name];
-
-      if (!value && !field.attributes?.required) {
-        delete data[field.name];
-      } else {
-        data[field.name] = value;
-      }
-    }
-  },
-});
+cms.use(blocks());
 
 // Configure an upload folder
-app.upload("uploads", "gh:uploads");
+cms.upload("uploads", "gh:uploads");
 
 // Configure a collection
-app.collection(
+cms.collection(
   "posts",
   "gh",
   [
@@ -62,7 +49,4 @@ app.collection(
   ],
 );
 
-Deno.serve({
-  port: 8000,
-  handler: app.init().fetch,
-});
+export default cms;
