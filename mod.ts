@@ -24,8 +24,6 @@ cms.storage(
   }),
 );
 
-cms.use(blocks());
-
 // Configure an upload folder
 cms.upload("uploads", "gh:uploads");
 
