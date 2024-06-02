@@ -1,9 +1,18 @@
 import lumeCMS from "cms/mod.ts";
 import { Octokit } from "npm:octokit";
 import GitHubStorage from "cms/storage/github.ts";
-import blocks from "cms/fields/blocks.ts";
 
-const cms = lumeCMS();
+const username = Deno.env.get("USERNAME")!;
+const password = Deno.env.get("PASSWORD")!;
+
+const cms = lumeCMS({
+  auth: {
+    method: "basic",
+    users: {
+      [username]: password,
+    },
+  },
+});
 
 // Register GitHub storage
 cms.storage(
@@ -44,7 +53,6 @@ cms.collection(
     "tags: list",
     "draft: checkbox",
     "show_toc: checkbox",
-    "blocks: blocks",
     "content: markdown",
   ],
 );
