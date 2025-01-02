@@ -27,7 +27,7 @@ cms.storage(
 // Configure an upload folder
 cms.upload("uploads", "gh:uploads");
 
-// Configure a collection
+// Configure collection
 cms.collection(
   "posts",
   "gh",
