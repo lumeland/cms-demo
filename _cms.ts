@@ -1,9 +1,9 @@
 import lumeCMS from "cms/mod.ts";
-import { Octokit } from "npm:octokit";
-import GitHubStorage from "cms/storage/github.ts";
+import GitHub from "cms/storage/github.ts";
 
 const username = Deno.env.get("USERNAME")!;
 const password = Deno.env.get("PASSWORD")!;
+const token = Deno.env.get("GITHUB_TOKEN")!;
 
 const cms = lumeCMS({
   auth: {
@@ -15,14 +15,7 @@ const cms = lumeCMS({
 });
 
 // Register GitHub storage
-cms.storage(
-  "gh",
-  new GitHubStorage({
-    client: new Octokit({ auth: Deno.env.get("GITHUB_TOKEN") }),
-    owner: "oscarotero",
-    repo: "test",
-  }),
-);
+cms.storage("gh", GitHub.create("oscarotero/test", token));
 
 // Configure an upload folder
 cms.upload("uploads", "gh:uploads");

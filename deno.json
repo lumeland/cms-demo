@@ -1,6 +1,6 @@
 {
   "imports": {
-    "cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.10.3/"
+    "cms/": "https://cdn.jsdelivr.net/gh/lumeland/cms@0.10.4/"
   },
   "lock": false
 }
