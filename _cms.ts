@@ -30,7 +30,7 @@ cms.upload("uploads", "gh:uploads");
 // Configure collection
 cms.collection(
   "posts",
-  "gh",
+  "gh:*.md",
   [
     "title: text",
     {
